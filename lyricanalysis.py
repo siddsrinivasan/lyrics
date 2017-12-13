@@ -29,7 +29,7 @@ while name not in list_of_artists:
 
 text = []
 for entry in data:
-	if entry["artist"] == artist:
+	if entry["artist"] == name:
 		text.append(entry["text"])
 
 #preprocess the text
