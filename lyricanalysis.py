@@ -1,5 +1,8 @@
 import csv
 import nltk
+import lyricalfunctions as lf
+
+
 filename = "songdata.csv"
 
 ## Script
@@ -29,7 +32,14 @@ for entry in data:
 	if entry["artist"] == artist:
 		text.append(entry["text"])
 
-print text
+#preprocess the text
+text = lf.cleanUp(text)
+unigram_counts = lf.unigramCounts(text)
+bigram_counts = lf.bigramCounts(text)
+
+lf.makeSentence(text,unigram_counts,bigram_counts)
+
+
 
 
 
