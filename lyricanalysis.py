@@ -2,17 +2,14 @@ import csv
 import nltk
 import lyricalfunctions as lf
 
-
 filename = "songdata.csv"
 
 ## Script
 data = []
-
 with open(filename) as csvfile:
 	reader = csv.DictReader(csvfile)
 	for row in reader:
 		data.append(row)
-
 
 #contains unique set of artists
 list_of_artists = []
@@ -21,7 +18,7 @@ for entry in data:
 	if artist not in list_of_artists:
 		list_of_artists.append(artist)
 
-name = input("Input an Artists name to prompt artifical sentence generation\n")
+name = input("Please type an artist's name in to prompt artificial lyric generation\n For Example: \"Katy Perry\"    \n")
 
 # Ensure user has valid input.
 while name not in list_of_artists:
@@ -34,11 +31,10 @@ for entry in data:
 
 #preprocess the text
 text = lf.cleanUp(text)
-unigram_counts = lf.unigramCounts(text)
+vocab_length = len(text)
+#unigram_counts = lf.unigramCounts(text)
 bigram_counts = lf.bigramCounts(text)
-
-lf.makeSentence(text,unigram_counts,bigram_counts)
-
+lf.makeSentence(text,bigram_counts, vocab_length)
 
 
 
